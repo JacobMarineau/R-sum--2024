@@ -72,7 +72,16 @@ const App = () => {
   useEffect(() => {
     const updateDimensions = () => {
       if (containerRef.current) {
-        const { offsetWidth, offsetHeight } = containerRef.current;
+        const computedStyle = getComputedStyle(containerRef.current);
+        const offsetWidth =
+          containerRef.current.offsetWidth +
+          parseFloat(computedStyle.borderLeftWidth) +
+          parseFloat(computedStyle.borderRightWidth);
+        const offsetHeight =
+          containerRef.current.offsetHeight +
+          parseFloat(computedStyle.borderTopWidth) +
+          parseFloat(computedStyle.borderBottomWidth);
+
         const perimeter = 2 * (offsetWidth + offsetHeight);
         const speed = 200; // Pixels per second
         const duration = perimeter / speed;
