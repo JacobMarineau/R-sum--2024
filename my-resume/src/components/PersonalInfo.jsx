@@ -14,18 +14,9 @@ const personalInfoStyle = css`
   margin-bottom: 20px;
   color: #c9d1d9;
   box-shadow: 0px 4px 20px rgba(0, 216, 255, 0.6);
-  animation: fadeIn 1s ease-in-out;
+}
 
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
+
 
   img {
     width: 100%;
