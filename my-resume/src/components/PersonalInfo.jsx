@@ -16,8 +16,6 @@ const personalInfoStyle = css`
   box-shadow: 0px 4px 20px rgba(0, 216, 255, 0.6);
 }
 
-
-
   img {
     width: 100%;
     max-width: 200px; 
