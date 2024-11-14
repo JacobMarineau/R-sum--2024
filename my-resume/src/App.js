@@ -8,6 +8,7 @@ import Education from "./components/Education";
 import Skills from "./components/Skills";
 import SideProjects from "./components/SideProjects";
 import Sidebar from "./components/SideBar";
+import PersonalInfo from "./components/PersonalInfo";
 
 // Keyframe Animation for Glowing Effect
 const lightPulse = keyframes`
@@ -109,6 +110,7 @@ const App = () => {
           <Education />
           <Skills />
           <SideProjects />
+          <PersonalInfo />
         </div>
       </div>
     </div>
