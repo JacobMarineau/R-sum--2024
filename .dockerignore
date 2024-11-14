@@ -1,0 +1,25 @@
+# flyctl launch added from my-resume/.gitignore
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+my-resume/node_modules
+my-resume/.pnp
+my-resume/**/.pnp.js
+
+# testing
+my-resume/coverage
+
+# production
+my-resume/build
+
+# misc
+my-resume/**/.DS_Store
+my-resume/**/.env.local
+my-resume/**/.env.development.local
+my-resume/**/.env.test.local
+my-resume/**/.env.production.local
+
+my-resume/**/npm-debug.log*
+my-resume/**/yarn-debug.log*
+my-resume/**/yarn-error.log*
+fly.toml
