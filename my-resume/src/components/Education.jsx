@@ -46,17 +46,17 @@ const Education = () => (
   <div css={sectionStyle}>
     <h2>Education</h2>
     <ul>
+    <li>
+        <span>Emerging Digital Academy Coding Bootcamp:</span>
+        <span className="date">2024</span>
+      </li>
       <li>
-        <span>Nucamp:</span>
+        <span>Nucamp Coding Bootcamp:</span>
         <span className="date">2021 - 2022</span>
       </li>
       <li>
         <span>North Dakota State University (NDSU):</span>
         <span className="date">2019 - 2020 (1 Year)</span>
-      </li>
-      <li>
-        <span>Sheyenne High School:</span>
-        <span className="date">2015 - 2019</span>
       </li>
     </ul>
   </div>

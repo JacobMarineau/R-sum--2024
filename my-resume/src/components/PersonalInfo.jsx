@@ -50,7 +50,7 @@ const PersonalInfo = () => (
   <div css={personalInfoStyle}>
     {/* Profile Picture */}
     <img
-      src="/IMG_20240318_095712.jpg" // Replace with your picture URL
+      src="/Jacob_Marineau_Pic_Close_Up.png" 
       alt="Jacob Marineau"
     />
     {/* Header */}

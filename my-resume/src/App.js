@@ -9,6 +9,7 @@ import Skills from "./components/Skills";
 import SideProjects from "./components/SideProjects";
 import Sidebar from "./components/SideBar";
 import PersonalInfo from "./components/PersonalInfo";
+import PlasmaFlames from "./components/PlasmaFlames";
 
 // Keyframe Animation for Glowing Effect
 const lightPulse = keyframes`
@@ -18,9 +19,10 @@ const lightPulse = keyframes`
 `;
 
 const pageStyle = css`
-  background: #0d1117;
+  background: rgba(13, 17, 23, 0.9);
   min-height: 100vh;
   padding: 20px 0;
+  overflow: hidden;
   font-family: "Roboto", sans-serif;
   display: flex;
   justify-content: center;
@@ -38,7 +40,7 @@ const orbitWrapperStyle = css`
 const containerStyle = css`
   width: 900px;
   padding: 20px;
-  background: #0a0f14;
+  background: none;
   border: 1px solid rgba(0, 216, 255, 0.8);
   border-radius: 10px;
   box-shadow: 0px 4px 20px rgba(0, 216, 255, 0.6);
@@ -66,6 +68,7 @@ const circlingLightStyle = (pathWidth, pathHeight, duration) => css`
 
 const App = () => {
   const containerRef = useRef(null);
+  const canvasRef = useRef(null);
   const [pathDimensions, setPathDimensions] = useState({ width: 0, height: 0 });
   const [animationDuration, setAnimationDuration] = useState(6); // Default duration
 
@@ -91,17 +94,48 @@ const App = () => {
       }
     };
 
-    // Initial dimensions
+    console.log("Canvas Ref:", canvasRef.current);
+
+    const handleResize = () => {
+      updateDimensions();
+    };
+
+    const handleMouseMove = (event) => {
+      if (!canvasRef.current) return;
+
+      const rect = canvasRef.current.getBoundingClientRect(); // Get canvas bounds
+      const canvasWidth = rect.width;
+      const canvasHeight = rect.height;
+
+      // Calculate mouse position relative to the canvas
+      const mouseX = event.clientX - rect.left; // Offset X position
+      const mouseY = event.clientY - rect.top; // Offset Y position
+
+      // Update global mouse coordinates normalized for WebGL
+      window.mouseX = mouseX / canvasWidth; // X: 0.0 to 1.0
+      window.mouseY = 1.0 - mouseY / canvasHeight; // Y: Flip to WebGL space
+    };
+
+    // Update dimensions initially
     updateDimensions();
 
-    // Update on resize
-    window.addEventListener("resize", updateDimensions);
-    return () => window.removeEventListener("resize", updateDimensions);
+    // Recalculate dimensions on window resize
+    window.addEventListener("resize", handleResize);
+
+    // Track mouse movement
+    window.addEventListener("mousemove", handleMouseMove);
+
+    // Cleanup event listeners
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
   }, []);
 
   return (
     <div css={pageStyle}>
       <Sidebar />
+      <PlasmaFlames canvasRef={canvasRef} />
       <div css={orbitWrapperStyle}>
         {/* Circling Light */}
         <div
@@ -114,12 +148,12 @@ const App = () => {
         {/* Container */}
         <div ref={containerRef} css={containerStyle}>
           <Header />
+          <PersonalInfo />
           <Summary />
-          <WorkExperience />
-          <Education />
           <Skills />
           <SideProjects />
-          <PersonalInfo />
+          <WorkExperience />
+          <Education />
         </div>
       </div>
     </div>
